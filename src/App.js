@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import GlobalStyles from './styles/GlobalStyles';
+import theme from './styles/theme';
+import Welcome from './pages/Welcome/Welcome';
+import Home from './pages/Home/Home';
+import BusinessDetail from './pages/BusinessDetail/BusinessDetail';
+import Reservation from './pages/Reservation/Reservation';
+import Confirmation from './pages/Confirmation/Confirmation';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Welcome />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/business/:id" element={<BusinessDetail />} />
+          <Route path="/reservation" element={<Reservation />} />
+          <Route path="/confirmation" element={<Confirmation />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 }
 
